@@ -1541,7 +1541,6 @@ static int regulator_resolve_supply(struct regulator_dev *rdev)
 		put_device(&r->dev);
 		return ret;
 	}
-
 	return 0;
 }
 
