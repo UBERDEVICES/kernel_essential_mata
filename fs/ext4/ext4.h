@@ -2273,6 +2273,7 @@ struct page *ext4_encrypt(struct inode *inode,
 			  struct page *plaintext_page,
 			  gfp_t gfp_flags);
 int ext4_decrypt(struct page *page);
+
 int ext4_encrypted_zeroout(struct inode *inode, ext4_lblk_t lblk,
 			   ext4_fsblk_t pblk, ext4_lblk_t len);
 extern const struct dentry_operations ext4_encrypted_d_ops;
