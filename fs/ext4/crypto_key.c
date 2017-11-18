@@ -265,13 +265,17 @@ got_key:
 	if (cmpxchg(&ei->i_crypt_info, NULL, crypt_info) == NULL)
 		crypt_info = NULL;
 
+	if (cmpxchg(&ei->i_crypt_info, NULL, crypt_info) == NULL)
+		crypt_info = NULL;
 out:
 	if (res == -ENOKEY)
 		res = 0;
 	key_put(keyring_key);
+
 	if (crypt_info != NULL)
 		memzero_explicit(crypt_info->ci_raw_key,
 			sizeof(crypt_info->ci_raw_key));
+
 	ext4_free_crypt_info(crypt_info);
 	return res;
 }
