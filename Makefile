@@ -399,6 +399,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security -Wno-maybe-uninitialized \
+		   -Wno-misleading-indentation \
 		   -std=gnu89 $(call cc-option,-fno-PIE)
 
 KBUILD_AFLAGS_KERNEL :=
@@ -635,6 +636,14 @@ else
 KBUILD_CFLAGS   += -O2
 endif
 endif
+
+KBUILD_CFLAGS	+= -g0 -DNDEBUG \
+		   -fgraphite-identity \
+		   -fivopts \
+		   -floop-nest-optimize \
+		   -ftree-loop-distribution \
+		   -ftree-loop-distribute-patterns \
+		   -ftree-vectorize
 
 # Tell gcc to never replace conditional load with a non-conditional one
 KBUILD_CFLAGS	+= $(call cc-option,--param=allow-store-data-races=0)
